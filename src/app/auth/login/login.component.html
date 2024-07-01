@@ -1,0 +1,24 @@
+
+
+<div class="card bg-black border border-dark-light rounded-4 text-center text-light mx-auto mt-5" style="width: 33%;">
+    <div class="row card-title mt-3">
+        <h2>Login</h2>
+    </div>
+
+    <div class="alert alert-danger text-center" role="alert" *ngIf="login_error">
+        A user with that email or password was not found!
+    </div>
+
+    <div class="card-body mx-auto" style="width: 60%;">
+        <div class="input-group mb-2 input-group-prepend">
+            <label for="username" class="input-group-text" style="width: 28%;">Username</label>
+            <input type="username" class="form-control" placeholder="Enter username" #username>
+        </div>
+
+        <div class="input-group mb-2 input-group-prepend">
+            <label for="password" class="input-group-text" style="width: 28%;">Password</label>
+            <input type="password" class="form-control" placeholder="Enter Password" #password>
+        </div>
+        <button class="btn btn-secondary mt-2" (click)="onSubmit()">Login</button>
+    </div>
+</div>

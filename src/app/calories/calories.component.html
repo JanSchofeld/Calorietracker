@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<div class="row justify-content-around mt-5">
+
+    <!-- left column -->
+    <div class="col-lg">
+        <div class="card bg-black border border-dark-light rounded-4 text-center text-light mx-auto"
+            style="width: 80%;">
+
+            <h2 class="card-title text-light mt-3">Food List</h2>
+
+            <div class="card-body">
+                <form class="mb-3" [formGroup]="foodForm" (ngSubmit)="onSubmit()">
+                    <div class="row justify-content-center">
+
+                        <div class="col-3">
+                            <input type="text" formControlName="food" class="form-control" id="foodinput"
+                                placeholder="Food" #food>
+                        </div>
+                        <div class="col-3">
+                            <input type="number" formControlName="amount" class="form-control" id="amountinput"
+                                placeholder="Amount in g" #amount>
+                        </div>
+                        <div class="col-3">
+                            <input type="number" formControlName="calories" class="form-control" id="caloriesinput"
+                                placeholder="Calories in kcal" #calories>
+                        </div>
+
+                        <div class="col-1">
+                            <button class="btn btn-secondary" type="submit" [disabled]="foodForm.invalid">Add</button>
+                        </div>
+
+                    </div>
+                </form>
+
+                <table class="table table-dark">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col" style="width: 33%;">Food</th>
+                            <th scope="col" style="width: 33%;">Amount</th>
+                            <th scope="col" style="width: 33%;">Calories</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-dark text-center" *ngFor="let foods of foodArray; index as i">
+                            <td>{{foods.food}}</td>
+                            <td>{{foods.amount}} g</td>
+                            <td>{{foods.calories}} kcal</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="btn-group w-50">
+                    <button class="btn btn-secondary w-50" (click)="onDelete()">Clear</button>
+                    <button class="btn btn-success w-50" (click)="saveDay()" [disabled]="foodArray.length == 0">Save Day</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- right column-->
+    <div class="col-lg">
+        <div class="card bg-black border border-dark-light rounded-4 text-center text-light mx-auto"
+            style="width: 66%;">
+
+            <h2 class="card-title text-light mt-3">Total Calorie Intake</h2>
+
+            <div class="card-body">
+                <table class="table table-dark">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col" style="width: 50%;">Day</th>
+                            <th scope="col" style="width: 50%;">Calories</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center" *ngFor="let days of dayArray; index as i">
+                            <td>{{days.day | date: 'shortDate'}}</td>
+                            <td>{{days.totalcalories}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-secondary" (click)="onDeleteDays()">Clear Days</button>
+            </div>
+        </div>
+    </div>
+</div>
