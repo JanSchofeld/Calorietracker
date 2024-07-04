@@ -1,16 +1,21 @@
 
 <div class="row mt-5">
+
+    <!-- left column -->
     <div class="col-md">
         <div class="card bg-black border border-dark-light rounded-4 text-center text-light mx-auto p-3"
-            style="width: 40%;">
+            style="width: fit-content; min-width: 40%;">
+            
             <div class="row card-title mt-3">
-                <h2 class="card-title text-light p-2">Current weight: {{weight}}kg</h2>
+                <h2 class="card-title text-light p-2" *ngIf="weight != ''">Current weight: {{weight}}kg</h2>
+                <h2 class="card-title text-light p-2" *ngIf="weight == ''">No weight entered!</h2>
             </div>
+
             <form [formGroup]="weightForm" (ngSubmit)="onClick()">
-                <div class="input-group mb-2">
-                    <input type="number" formControlName="newWeight" class="btn btn-secondary form-control" #weightinput>
+                <div class="input-group mb-2 mx-auto" style="max-width: 70%;">
+                    <input type="number" formControlName="newWeight" class="btn btn-secondary form-control">
                     <button class="btn btn-success form-control" type="submit"
-                        style="max-width: fit-content;" [disabled]="weightForm.invalid">Update Weight</button>
+                        style="min-width: fit-content;" [disabled]="weightForm.invalid">Update Weight</button>
                 </div>
             </form>
         </div>
@@ -19,11 +24,12 @@
             style="width: fit-content; min-width: 40%;">
             <div class="row card-title mt-3 p-2">
                 <h2 *ngIf="dataservice.getHeight() === ''">Please add height for BMI</h2>
-                <h2 class="card-title text-light p-2" *ngIf="dataservice.getHeight() !== ''">BMI: {{dataservice.getBMI().toFixed(2)}}</h2>
+                <h2 *ngIf="dataservice.getHeight() !== ''">BMI: {{dataservice.getBMI().toFixed(2)}}</h2>
             </div>
         </div>
     </div>
 
+    <!-- right column -->
     <div class="col-md">
         <div class="card bg-black border border-dark-light rounded-4 text-center text-light mx-auto p-1"
             style="width: fit-content; min-width: 40%;">

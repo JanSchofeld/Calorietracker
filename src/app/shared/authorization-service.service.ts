@@ -5,7 +5,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 })
 
 export class AuthorizationService {
-  private is_logged_in:boolean = true;
+  private is_logged_in:boolean = false;
 
   isLoggedIn() {
     return this.is_logged_in;

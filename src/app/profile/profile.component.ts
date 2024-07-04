@@ -2,6 +2,7 @@ import { Component, Injectable } from '@angular/core';
 import { ProfiledataService } from '../profiledata.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Weights } from '../model/Weights';
 
 @Component({
   selector: 'app-profile',
@@ -87,23 +88,6 @@ export class ProfileComponent {
     
     this.currentweight = this.dataservice.getWeight();
   }
-
-  /*onSubmitAlt(_name: string, _height: number, _startweight: number){
-    if(_name == '' || isNaN(_height) || isNaN(_startweight)){
-      this.profilevalid = false;
-      return;
-    }
-
-    this.name = _name;
-    this.height = _height;
-    this.startweight = _startweight;
-  
-    this.dataservice.setName(this.name);
-    this.dataservice.setHeight(this.height);
-    this.dataservice.setStartweight(this.startweight);
-
-    this.router.navigateByUrl('/calories');
-  }*/
 
   ngOnInit(){
     this.LoadValuesIntoForm();

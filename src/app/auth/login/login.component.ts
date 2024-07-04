@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthorizationService } from 'src/app/shared/authorization-service.service';
 
@@ -10,17 +11,16 @@ import { AuthorizationService } from 'src/app/shared/authorization-service.servi
 })
 export class LoginComponent {
 
-  @ViewChild('username')
-  usernameElement!: ElementRef;
-
-  @ViewChild('password')
-  passwordElement!: ElementRef;
+  loginForm: FormGroup = new FormGroup({
+    username: new FormControl("", [Validators.required]),
+    password: new FormControl("", [Validators.required])
+  })
 
   login_error: boolean = false;
 
   onSubmit() {
-    let username = this.usernameElement.nativeElement.value;
-    let password = this.passwordElement.nativeElement.value;
+    let username = this.loginForm.controls['username'].value;
+    let password = this.loginForm.controls['password'].value;
     
     if (this.auth.login(username, password)) {
       this.router.navigateByUrl('/profile');
@@ -33,11 +33,5 @@ export class LoginComponent {
   constructor(
     private auth: AuthorizationService,
     private router: Router
-  ) {
-    this.auth.changed.subscribe((result) => {
-      if (result)
-        this.router.navigate(['/calories']);
-    }
-    )
-  }
+  ) {}
 }

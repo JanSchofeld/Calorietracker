@@ -29,16 +29,6 @@ export class CaloriesComponent implements OnInit {
     private foodservice: FoodService,
   ) { }
 
-/*
-  addFood(food: string, amount: number, calories: number) {
-    this.foodArray = this.foodArray || [];
-
-    if(food != "" && amount > 0 && calories > 0){
-      this.foodArray.push(new Food(food, amount, calories));
-    }
-    this.foodservice.setFood(this.foodArray);
-  }*/
-
   getFood() {
     this.foodArray = this.foodservice.getFood();
   }
@@ -51,6 +41,7 @@ export class CaloriesComponent implements OnInit {
     this.foodservice.clearFood();
     this.getFood();
     }
+    this.foodForm.reset();
   }
 
   onSubmit() {
